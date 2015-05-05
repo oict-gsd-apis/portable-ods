@@ -9,8 +9,15 @@ var isOffline = true;
 var langDoc;
 
 $(function() {
-
-    //langDoc = $.parseXML("../langs/en.xml"); 
+  
+    $.ajax({
+        type: "GET",
+        url: "langs/en.xml",
+        dataType: "xml",
+        success: function(data){
+          langDoc = $( data );
+        }
+    });
 
     progressbar = $( "#progressbar" );
     progressLabel = $( ".progress-label" );
@@ -400,18 +407,8 @@ function resetTimeout(val) {
  * GENERALISED FUNCTIONS
  */
  function getLanguageElement(name){
-    var $xml = $(xmlDoc);
-
-    var $person = $xml.find("person");
-
-    $person.each(function(){
-
-      var name = $(this).find('name').text(),
-          age = $(this).find('age').text();
-
-      $("#ProfileList" ).append('<li>' +name+ ' - ' +age+ '</li>');
-
-    });
+    $val = langDoc.find( name );
+    alert($val.text());
  }
 
 // Function which builds a search button click
