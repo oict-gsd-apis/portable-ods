@@ -1,0 +1,99 @@
+/*
+* Author: Kevin Thomas Bradley
+* Date: 12-Jan-2015
+* Description: Custom css style sheet for the statistics
+*/
+li ul {
+	margin: 0 0 0 0;
+}
+
+.ui-dialog {
+            padding: 0;
+            font-family: Verdana,Arial,sans-serif;
+            font-size: .8em;
+        }
+        .ui-dialog.success-dialog {
+            font-family: Verdana,Arial,sans-serif;
+            font-size: .8em;
+        }
+        .ui-dialog-titlebar {
+            background: #273051;
+            color: #fff;
+            border-bottom: thick solid #F79321;
+            border-radius: 0;
+        }
+
+        .noTitleStuff .ui-dialog-titlebar {
+            padding-top: 1em;
+            background-color: #fff;
+            border: none;
+        }
+
+        #navPanel #nav {
+            padding: 1.25em 1.25em;
+            background-color: #273051; /*  #6998C9   #273051*/
+            color: #273051;
+        }
+
+        #navPanel div #nav h4 {
+            color: #F79321;
+        }
+
+        #navPanel #nav ul li a:not(.button), #navPanel #nav ul li span:not(.button) {
+            color: #fff;
+        }
+
+        #navPanel #nav input[type="checkbox"] + label, input[type="radio"] + label {
+            color: #fff;
+        }
+
+        #navPanel #nav ul,li,label {
+            color: #273051;
+        }
+
+        #navPanel #nav ul li a.icon.fa-info {
+            display: none;
+        }
+        #navPanel #nav ul li a.icon.fa-chevron-right {
+            display: none;
+        }
+        .ui-icon-minusthick {
+            background-color: yellow;
+        }
+        /*button.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-icon-only.ui-dialog-titlebar-close {
+            border: 0; 
+            background: transparent
+        }*/
+        .ui-dialog-titlebar-close {
+            display:none;
+        }    
+        .ui-icon.ui-icon-closethick {
+            display:none;
+        }
+        /*span.ui-button-icon-primary.ui-icon.ui-icon-closethick{
+            display:none;
+        }​*/
+        .node circle {
+            cursor: pointer;
+            /*fill: #fff;*/
+            stroke: white;
+            stroke-width: 1.5px;
+        }
+
+        .node text {
+            font-size: 11px;
+        }
+
+        path.link {
+            fill: none;
+            stroke: #ccc;
+            /*stroke-width: 1.5px;*/
+        }
+
+        text{
+            fill:#777
+        }
+        .node.central text {
+            font-size:1.2em;
+            fill:#555
+        }

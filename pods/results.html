@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<!-- skel-baseline v2.0.0 | (c) n33 | getskel.com | MIT licensed -->
+<html>
+<head>
+    <title>Unite Search</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv ="X-UA-Compatible" content = "IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+
+    <script src="js/d3.js"></script>
+    <script src="js/d3.v3.min.js"></script>
+    <script src="js/d3.layout.js"></script>
+    <script src="js/d3script.js"></script>
+
+    <script src="js/skel.min.js"></script>
+    <script src="js/skel-layers.min.js"></script>
+    <script src="js/init.js"></script>
+    <noscript>
+    <!--<link rel="stylesheet" href="css/skel.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style-xlarge.css" /> -->        
+    </noscript>
+
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/site.css" />
+
+    <script src="core/Core.js"></script>
+    <script src="core/AbstractManager.js"></script>
+    <script src="managers/Manager.jquery.js"></script>
+    <script src="core/Parameter.js"></script>
+    <script src="core/ParameterStore.js"></script>
+    <script src="core/AbstractWidget.js"></script>
+    <script src="core/AbstractTextWidget.js"></script>
+    <script src="core/AbstractFacetWidget.js"></script>
+
+    <script src="widgets/ResultWidget.js"></script>
+    <script src="widgets/jquery/PagerWidget.js"></script>
+    <script src="widgets/jquery/AutocompleteTermWidget.js"></script>
+    <script src="widgets/CurrentSearchWidget.js"></script>
+    <script src="widgets/BubbleChartWidget.js"></script>
+    <!-- UN Custom Widgets -->
+    <script src="widgets/UNBodyWidget.js"></script>
+    <script src="widgets/ECWidget.js"></script>
+    <script src="widgets/AdvancedSearchWidget.js"></script>
+    <script src="widgets/LanguageWidget.js"></script>
+    <script src="widgets/EntitiesWidget.js"></script>
+    <script src="widgets/CollectionWidget.js"></script>
+
+    <script src="js/solrmanager.js"></script>
+    <script src="js/site.js"></script>
+
+    <script src="widgets/jquery/jquery.sumoselect.min.js"></script>
+    <link rel="stylesheet" href="css/sumoselect.css" />
+
+    <style>
+  .ui-progressbar {
+    position: relative;
+  }
+  .progress-label {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+  }
+  </style>
+    
+</head>
+<body id="top">
+
+<!-- HEADER -->
+<header id="header" class="skel-layers-fixed">
+    <h1><a href="#top"></a></h1>
+    <nav>
+        <ul>
+            <!--<li><a href="#">عربي</a></li>
+            <li><a href="#" >中文</a></li>-->
+            <li><a href="#" >English</a></li>
+            <!--<li><a href="#" >Français</a></li>
+            <li><a href="#" >Русский</a></li>
+            <li><a href="#" >Español</a></li>-->
+        </ul>
+    </nav>
+</header>
+<!--ORANGE LINE-->
+<header id="header" class="skel-layers-fixed header2"></header>
+
+<input id="replicateButton" type="button" class="button special fa" value="Synchronize" style="position: fixed; right:0; display: none;"/>
+
+<!-- SEARCH AREA -->
+<div id="main" class="container" style="padding: 2em 0 2em 0">
+        <div class="row" style="margin: 0 0 2em 0">
+            <div class="12u 12u$(2)" style="text-align: center">
+              <img src="images/logos/portableODS-logo.png" alt="Unite Analytics" width="30%" height="30%">   
+            </div>
+        </div>
+        <div class="row 25% uniform">
+            <div class="1u 12u$(2)">
+                <div class="select-wrapper">
+                    <select id="collectionType" name="category" class="med">
+                        <option value="ods">ODS</option>
+                    </select>
+                </div>
+            </div>
+            <div class="6u 12u(2)" id="search">
+                <input class="med-border" type="text" id="query" name="query" autocomplete="off" placeholder="Search" style="color: #000">
+            </div>
+            <div class="5u$ 12u$(2)">
+                <input id="srchButton" type="button" class="button special fa" value=""/>
+                <span style="float: right; font-size: .8em">
+                    <a href="#" onclick="$( '#dialog-guide' ).dialog( 'open' );">Search Guide</a> | 
+                    <span id="as" onclick="return toggleAS(this);">
+                        <a id="asText">Open Advanced Search</a>&nbsp;&nbsp;
+                        <a id="asToggleButton" class="icon fa-toggle-off fa-2x" style="vertical-align:middle;"></a>
+                    <span>
+                </span> 
+            </div>
+            <div class="12u">
+                <span id="docCount" style="font-size: .8em"><span>
+            </div>
+        </div>
+</div>
+
+<!-- ADVANCED SEARCH -->
+<div id="advanced" style="display: none"></div>
+
+<!-- DIALOGS -->
+<div id="dialog-message" title="Full Text" style="white-space:pre; overflow: scroll;"></div>
+<div id="dialog-visual" title="ODS Reference Explorer" style="height: 300px;"></div>
+<div id="dialog-social" style="text-align:">
+        <a href="#" class="icon fa-facebook fa-2x" style="padding: 1em; color: #273051"></a> 
+        <a href="http://twitter.com/share?text=This%20is%20so%20easy" class="icon fa-twitter fa-2x" style="padding: 1em; color: #273051"></a> 
+        <a href="#" class="icon fa-google-plus fa-2x" style="padding: 1em; color: #273051"></a> 
+        <a href="#" class="icon fa-paper-plane fa-2x" style="padding: 1em; color: #273051"></a>
+</div>
+<div id="dialog-guide" title="Search Guide">
+    A Detailed guide on how to search via the UI
+</div>
+<div id="dialog-replicate" title="Synchronizing - Please do not close or refresh">
+    Please be advised that this may take some time if there are many changes to apply.
+    Current estimated time is <span id="cTime">calculating...</span> at a speed of <span id="cSpeed">calculating...</span><br />
+    <div id="progressbar"><div class="progress-label">Loading...</div></div><br />
+    <input id="abortButton" type="button" class="button special fa" value="Abort Synchronization"/>
+</div>
+
+<!-- WIKI INFO -->
+<div id="informat" style="display: none">
+    <div class="container box">
+
+        <div class="row" id="infoHeader">
+            <h1>United Nations Entity</h1> <span id="closer" style="float: right; color: ##555656; font-size: .8em; margin: 0 0 0 0;"><a class="icon fa-close" onclick="return closeSlidingEmptyContainer('informat', new Array('informatUN'));"></a><span>
+        </div>
+        <div class="row" id="informatUN">
+        </div>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+    <div class="row 200% uniform">
+
+        <!--SIDEBAR-->
+        <div class="3u" id="sidebar">
+            <nav id="nav" class="sidebar">
+
+                <!--RELATED UN ENTITIES -->
+                <h4>Related UN Entities</h4>
+                <hr>
+                <div id="unInfoBody"></div>
+                <div id="customWidgets"></div>
+
+                <!-- CUSTOM VIZ -->
+                <h4>Document Language Volume</h4>
+                <hr>
+                <ul>
+                    <div id="bubbles_topics"></div>
+                </ul>
+            </nav>
+        </div>     
+        
+        <!-- RESULTS -->
+        <div class="9u 12u(2)" id="results">
+            <span style="float: right; font-size: .8em" id="sortRel">Sort by: Relevance | <a href="#" id="sortDate">Date</a> </span><br />
+            <div id="docs"></div>
+            <br />
+            <div id="pager" style="text-align: center"></div>
+            <br />
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="8u 12u(2)">
+                <h2>Unite Search</h2>
+                <p>UN Personnel spend a lot of time searching for information or recreating content that already exists. The Office of Information & Technology (OICT) is working to ensure that we have the ability to search all content in the Organization. This should free up time for staff to spend on daily activities, allowing them to focus more time on the core work of the UN. Additionally, this would benefit the general public, who would be able to find public content from across the UN through a single entry point.</p>
+                <p>Connect with us through <strong><a href="https://unite.un.org/services/unite-search">Unite Ideas</a></strong>, an innovation collaboration platform between academia and the United Nations. It is a place to exchange ideas, learn from one another, and help others by taking on data challenges.</p>
+            </div>
+            <div class="3u$ -1u 12u(2)">
+                <h3>Links</h3>
+                <ul class="alt">
+                    <li><a href="#">Copyright</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Privacy Notice</a></li>
+                    <li><a href="#">Fraud Alert</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li id="socialmedia"><a href="#" class="icon fa-facebook"></a> <a href="#" class="icon fa-twitter"></a> <a href="#" class="icon fa-google-plus"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="5u">
+                <span class="image fit"><img src="images/logos/OICT-logo-long-color.png" alt="" /></span>
+            </div>
+        </div>
+
+    </div>
+    <div class="copyright">
+        &copy; Unite Analytics. All rights reserved.
+    </div>
+</footer>
+
+</body>
+</html>
