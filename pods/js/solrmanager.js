@@ -119,7 +119,7 @@ function getODSParams() {
     'facet.mincount': 1,
     'f.topics.facet.limit': 50,
     'f.languageCode.facet.limit': -1,
-    'fl': [ 'url', 'size', 'symbol','languageCode','publicationDate','title_en','title_fr','title_es','title_ru','title_ar','title_zh-cn','title_other','body_en','body_fr','body_es','body_ru','body_ar','body_zh-cn','body_other' ],      
+    'fl': [ 'id', 'url', 'size', 'symbol','languageCode','publicationDate','title_en','title_fr','title_es','title_ru','title_ar','title_zh-cn','title_other','body_en','body_fr','body_es','body_ru','body_ar','body_zh-cn','body_other' ],      
     'json.nl': 'map',
     'mlt':true,
     'mlt.fl': ['title_en','title_es','title_ru','title_ar','title_fr','title_other','title_zh-cn']
